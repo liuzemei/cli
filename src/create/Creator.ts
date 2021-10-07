@@ -60,7 +60,7 @@ export class Creator {
 
   async receivedEnv() {
     this.config.name = await cli.prompt("package name?", { default: this.name })
-    this.config.dbname = await cli.prompt("mongo db name?", { default: this.name })
+    this.config.dbname = await cli.prompt("db name?", { default: this.name })
   }
 
   async replaceEnv() {
