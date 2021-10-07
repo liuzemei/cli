@@ -1,0 +1,61 @@
+{
+  "name": "lzm-cli",
+  "version": "0.0.0",
+  "author": "Neo @liuzemei",
+  "bin": {
+    "lzm-cli": "./bin/run"
+  },
+  "bugs": "https://github.com/liuzemei/cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "axios": "^0.22.0",
+    "download-git-repo": "^3.0.2",
+    "ejs": "^3.1.6",
+    "fs-extra": "^10.0.0",
+    "inquirer": "^8.2.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/axios": "^0.14.0",
+    "@types/ejs": "^3.1.0",
+    "@types/fs-extra": "^9.0.13",
+    "@types/inquirer": "^8.1.3",
+    "@types/node": "^10",
+    "globby": "^10",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/liuzemei/cli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "lzm-cli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "liuzemei/cli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
