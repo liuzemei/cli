@@ -5,7 +5,7 @@ export default class Hello extends Command {
   static description = 'create a new project'
 
   static examples = [
-    `$ lzm-cli create test`,
+    `$ lzmm-cli create test`,
   ]
 
   static flags = {

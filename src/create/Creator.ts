@@ -49,7 +49,7 @@ export class Creator {
   }
 
   async download(repo: string, tag: string): Promise<string> {
-    const requestUrl = `lzm-cli/${repo}${tag ? '#' + tag : ''}`
+    const requestUrl = `lzmm-cli/${repo}${tag ? '#' + tag : ''}`
     await
       loading(downloadGitRepo, "download template...", requestUrl, this.target, {})
     return this.target

@@ -1,9 +1,12 @@
 {
-  "name": "lzm-cli",
+  "name": "lzmm-cli",
   "version": "0.0.1",
   "author": "Neo @liuzemei",
   "bin": {
-    "lzm-cli": "./bin/run"
+    "lzmm-cli": "./bin/run"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": "https://github.com/liuzemei/cli/issues",
   "dependencies": {
@@ -45,7 +48,7 @@
   "main": "lib/index.js",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "lzm-cli",
+    "bin": "lzmm-cli",
     "plugins": [
       "@oclif/plugin-help"
     ]
