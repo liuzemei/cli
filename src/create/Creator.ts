@@ -37,7 +37,6 @@ export class Creator {
 
   async fetchTag(repo: string): Promise<string> {
     const tagList = await loading<IName[]>(fetchTagsList, "fetching tags...", repo)
-    console.log(tagList)
     const choices = tagList.map(item => item.name)
     const { tag } = await prompt({
       name: 'tag',
@@ -49,7 +48,7 @@ export class Creator {
   }
 
   async download(repo: string, tag: string): Promise<string> {
-    const requestUrl = `lzmm-cli/${repo}${tag ? '#' + tag : ''}`
+    const requestUrl = `lzm-cli/${repo}${tag ? '#' + tag : ''}`
     await
       loading(downloadGitRepo, "download template...", requestUrl, this.target, {})
     return this.target

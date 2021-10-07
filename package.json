@@ -1,6 +1,6 @@
 {
   "name": "lzmm-cli",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "Neo @liuzemei",
   "bin": {
     "lzmm-cli": "./bin/run"
@@ -14,6 +14,7 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
     "axios": "^0.22.0",
+    "cli-ux": "^5.6.3",
     "download-git-repo": "^3.0.2",
     "ejs": "^3.1.6",
     "fs-extra": "^10.0.0",
