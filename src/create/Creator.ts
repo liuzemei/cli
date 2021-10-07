@@ -9,11 +9,15 @@ import cli from 'cli-ux'
 export class Creator {
   name: string
   target: string
+  config: any = {}
+
   constructor(projectName: string, targetDir: string) {
     this.name = projectName
     this.target = targetDir
   }
   async create() {
+    await this.receivedEnv()
+
     let repo = await this.fetchRepo()
 
     let tag = await this.fetchTag(repo)
@@ -54,9 +58,13 @@ export class Creator {
     return this.target
   }
 
+  async receivedEnv() {
+    this.config.name = await cli.prompt("package name?", { default: this.name })
+    this.config.dbname = await cli.prompt("mongo db name?", { default: this.name })
+  }
+
   async replaceEnv() {
-    const packageName = await cli.prompt("package name?", { default: this.name })
-    const dbname = await cli.prompt("mongo db name?", { default: this.name })
+    const { name, dbname } = this.config
 
     const configTemplatePath = path.resolve(this.target, 'config.default.json')
     if (fs.existsSync(configTemplatePath)) {
@@ -69,7 +77,7 @@ export class Creator {
     const packageJsonPath = path.resolve(this.target, 'package.json')
     if (fs.existsSync(packageJsonPath)) {
       const t = fs.readFileSync(packageJsonPath, 'utf8')
-      const config = ejs.render(t, { name: packageName })
+      const config = ejs.render(t, { name })
       fs.writeFileSync(packageJsonPath, config, { flag: 'w' })
     }
 
