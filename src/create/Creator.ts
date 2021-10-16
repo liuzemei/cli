@@ -1,10 +1,7 @@
 import { fetchRepoList, fetchTagsList, IName } from './request'
 import { prompt } from 'inquirer'
 import { downloadGitRepo, loading } from './utils'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as ejs from 'ejs'
-import cli from 'cli-ux'
+import { replateEnv, initEnv } from '../template'
 
 export class Creator {
   name: string
@@ -16,14 +13,11 @@ export class Creator {
     this.target = targetDir
   }
   async create() {
-    await this.receivedEnv()
-
     let repo = await this.fetchRepo()
-
     let tag = await this.fetchTag(repo)
+    this.config = await initEnv(this, repo)
     await this.download(repo, tag)
-
-    this.replaceEnv()
+    await replateEnv(this, repo)
   }
 
   async fetchRepo(): Promise<string> {
@@ -58,28 +52,8 @@ export class Creator {
     return this.target
   }
 
-  async receivedEnv() {
-    this.config.name = await cli.prompt("package name?", { default: this.name })
-    this.config.dbname = await cli.prompt("db name?", { default: this.name })
-  }
-
   async replaceEnv() {
-    const { name, dbname } = this.config
 
-    const configTemplatePath = path.resolve(this.target, 'config.default.json')
-    if (fs.existsSync(configTemplatePath)) {
-      const t = fs.readFileSync(configTemplatePath, 'utf8')
-      const config = ejs.render(t, { dbname })
-      const configPath = path.resolve(this.target, 'config.json')
-      fs.writeFileSync(configPath, config)
-    }
-
-    const packageJsonPath = path.resolve(this.target, 'package.json')
-    if (fs.existsSync(packageJsonPath)) {
-      const t = fs.readFileSync(packageJsonPath, 'utf8')
-      const config = ejs.render(t, { name })
-      fs.writeFileSync(packageJsonPath, config, { flag: 'w' })
-    }
 
     console.log("create success...\n")
   }
