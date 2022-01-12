@@ -1,0 +1,1 @@
+{"version":"0.0.7","commands":{"create":{"id":"create","description":"create a new project","pluginName":"lzmm-cli","pluginType":"core","aliases":[],"examples":["$ lzmm-cli create test"],"flags":{"force":{"name":"force","type":"boolean","char":"f","allowNo":false}},"args":[{"name":"project"}]}}}
