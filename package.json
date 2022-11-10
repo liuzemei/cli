@@ -1,6 +1,6 @@
 {
   "name": "lzmm-cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Neo @liuzemei",
   "bin": {
     "lzmm-cli": "./bin/run"
