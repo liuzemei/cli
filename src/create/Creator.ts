@@ -1,7 +1,7 @@
 import { fetchRepoList, fetchTagsList, IName } from './request'
 import { prompt } from 'inquirer'
 import { downloadGitRepo, loading } from './utils'
-import { replateEnv, initEnv } from '../template'
+import { replaceEnv, initEnv } from '../template'
 
 export class Creator {
   name: string
@@ -17,7 +17,7 @@ export class Creator {
     let tag = await this.fetchTag(repo)
     this.config = await initEnv(this, repo)
     await this.download(repo, tag)
-    await replateEnv(this, repo)
+    await replaceEnv(this, repo)
   }
 
   async fetchRepo(): Promise<string> {
