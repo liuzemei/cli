@@ -1,19 +1,19 @@
 import { Command, flags } from "@oclif/command";
 import { createProject } from "../create";
 
-export default class Create extends Command {
-  static description = "create a new project";
+export default class Generate extends Command {
+  static description = "generate a new mode";
 
-  static examples = [`$ lzmm-cli create test`];
+  static examples = [`$ lzmm-cli generate test`];
 
   static flags = {
     force: flags.boolean({ char: "f" }),
   };
 
-  static args = [{ name: "project" }];
+  static args = [{ name: "mode" }];
 
   async run() {
-    const { args, flags } = this.parse(Create);
+    const { args, flags } = this.parse(Generate);
     createProject(args.project, flags.force);
   }
 }
